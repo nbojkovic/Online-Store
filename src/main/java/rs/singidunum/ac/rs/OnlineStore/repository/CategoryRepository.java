@@ -1,4 +1,4 @@
 package rs.singidunum.ac.rs.OnlineStore.repository;
 
-public class CategoryRepository {
+public interface CategoryRepository {
 }
