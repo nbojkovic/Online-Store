@@ -23,4 +23,12 @@ public class UserController {
         User newUser = userService.addUser(user);
         return new ResponseEntity<User>(newUser, HttpStatus.CREATED);
     }
+    @PutMapping("/{id}")
+    public ResponseEntity<User> updateUser(@PathVariable String id, @RequestBody User user) {
+        User updatedUser = userService.updateUser(id, user);
+        if (updatedUser == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(updatedUser, HttpStatus.OK);
+    }
 }
