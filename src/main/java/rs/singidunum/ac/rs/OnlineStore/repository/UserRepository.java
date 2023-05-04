@@ -7,4 +7,5 @@ import rs.singidunum.ac.rs.OnlineStore.model.User;
 
 @Repository
 public interface UserRepository extends MongoRepository<User, ObjectId> {
+    User findById(String id);
 }

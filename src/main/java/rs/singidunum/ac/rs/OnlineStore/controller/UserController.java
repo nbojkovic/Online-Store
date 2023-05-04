@@ -18,6 +18,10 @@ public class UserController {
     public ResponseEntity<List<User>> getAllUsers() {
         return new ResponseEntity<List<User>>(userService.getAllUsers(), HttpStatus.OK);
     }
+    @GetMapping("/{id}")
+    public ResponseEntity<User> getOneUser(@PathVariable String id) {
+        return new ResponseEntity<User>(userService.getUserById(id), HttpStatus.OK);
+    }
     @PostMapping()
     public ResponseEntity<User> addUser(@RequestBody User user) {
         User newUser = userService.addUser(user);
