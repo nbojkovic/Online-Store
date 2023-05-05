@@ -8,4 +8,5 @@ import rs.singidunum.ac.rs.OnlineStore.model.Article;
 @Repository
 public interface ArticleRepository extends MongoRepository<Article, ObjectId> {
     Article findById(String id);
+
 }
