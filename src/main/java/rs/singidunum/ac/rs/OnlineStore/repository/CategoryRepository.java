@@ -8,4 +8,6 @@ import rs.singidunum.ac.rs.OnlineStore.model.Category;
 @Repository
 public interface CategoryRepository extends MongoRepository<Category, ObjectId> {
     Category findById(String id);
+
+    Category findByName(String name);
 }

@@ -35,7 +35,6 @@ public class CategoryService {
 
         Category existingCategory = optionalCategory.get();
         existingCategory.setName(category.getName());
-        existingCategory.setDescription(category.getDescription());
 
         return categoryRepository.save(existingCategory);
     }

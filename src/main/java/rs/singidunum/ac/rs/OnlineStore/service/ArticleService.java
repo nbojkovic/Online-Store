@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import rs.singidunum.ac.rs.OnlineStore.model.Article;
 import rs.singidunum.ac.rs.OnlineStore.repository.ArticleRepository;
+import rs.singidunum.ac.rs.OnlineStore.repository.CategoryRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,6 +14,8 @@ import java.util.Optional;
 public class ArticleService {
     @Autowired
     private ArticleRepository articleRepository;
+    @Autowired
+    private CategoryRepository categoryRepository;
 
     public List<Article> getAllArticles() {
         return articleRepository.findAll();
@@ -23,6 +26,7 @@ public class ArticleService {
     }
 
     public Article addArticle(Article article) {
+        article.setCategory(categoryRepository.findByName(article.getCategory().getName()));
         return articleRepository.save(article);
     }
 
@@ -34,7 +38,6 @@ public class ArticleService {
         Article existingArticle = optionalArticle.get();
         existingArticle.setTitle(article.getTitle());
         existingArticle.setDescription(article.getDescription());
-        existingArticle.setImageUrl(article.getImageUrl());
         existingArticle.setPrice(article.getPrice());
         return articleRepository.save(existingArticle);
     }
