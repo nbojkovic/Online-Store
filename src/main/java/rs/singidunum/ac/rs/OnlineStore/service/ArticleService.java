@@ -38,6 +38,7 @@ public class ArticleService {
         Article existingArticle = optionalArticle.get();
         existingArticle.setTitle(article.getTitle());
         existingArticle.setDescription(article.getDescription());
+        existingArticle.setCategory(categoryRepository.findByName(article.getCategory().getName()));
         existingArticle.setPrice(article.getPrice());
         return articleRepository.save(existingArticle);
     }
