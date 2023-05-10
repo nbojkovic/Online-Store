@@ -24,4 +24,13 @@ public class CartController {
     public ResponseEntity<Cart> addCart(@RequestBody  Cart cart) {
         return new ResponseEntity<Cart>(cartService.addCart(cart), HttpStatus.OK);
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Cart> updateCart(@PathVariable String id, @RequestBody Cart cart) {
+        Cart updatedCart = cartService.updateCart(id, cart);
+        if (updatedCart == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(updatedCart, HttpStatus.OK);
+    }
 }

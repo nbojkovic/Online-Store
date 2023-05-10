@@ -7,4 +7,5 @@ import rs.singidunum.ac.rs.OnlineStore.model.Cart;
 
 @Repository
 public interface CartRepository extends MongoRepository<Cart, ObjectId> {
+    Cart findById(String id);
 }
