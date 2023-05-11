@@ -8,6 +8,7 @@ import rs.singidunum.ac.rs.OnlineStore.model.Cart;
 import rs.singidunum.ac.rs.OnlineStore.repository.CartRepository;
 import rs.singidunum.ac.rs.OnlineStore.repository.UserRepository;
 
+import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,9 +23,19 @@ public class CartService {
         return cartRepository.findAll();
     }
 
+    public Cart addArticleToCart(String userId, Article article) {
+        Cart userCart = cartRepository.findByUserId(userId);
+        userCart.getArticleList().add(article);
+        return cartRepository.save(userCart);
+    }
+
     public Cart addCart(Cart cart) {
         cart.setUser(userRepository.findById(cart.getUser().getId()));
         return cartRepository.save(cart);
+    }
+
+    public Cart getCartByUserId(String id) {
+        return cartRepository.findByUserId(id);
     }
 
     public Cart updateCart(String id, Cart cart) {
